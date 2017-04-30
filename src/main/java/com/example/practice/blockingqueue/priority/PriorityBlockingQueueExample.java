@@ -19,6 +19,6 @@ public class PriorityBlockingQueueExample {
         }
         PriorityConsumer priorityConsumer = new PriorityConsumer(queue);
         new Thread(priorityConsumer).start();
-        System.out.println("PriorityProducer and PriorityConsumer started");
+        System.out.println("SynchronousProducer and SynchronousConsumer started");
     }
 }
