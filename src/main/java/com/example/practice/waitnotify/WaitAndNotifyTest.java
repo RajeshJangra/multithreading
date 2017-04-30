@@ -17,10 +17,10 @@ public class WaitAndNotifyTest {
         Thread.sleep(200);
         synchronized (message) {
             System.out.println("About to notify 1");
-            message.notify();
-            Thread.sleep(200);
+            message.notifyAll();
+            /*Thread.sleep(200);
             System.out.println("About to notify 2");
-            message.notify();
+            message.notify();*/
         }
         System.out.println("All the threads are started");
 
