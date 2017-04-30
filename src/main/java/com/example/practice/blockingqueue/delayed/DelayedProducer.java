@@ -1,4 +1,4 @@
-package com.example.practice.DelayedQueueExample;
+package com.example.practice.blockingqueue.delayed;
 
 import java.util.Date;
 import java.util.concurrent.BlockingQueue;

@@ -1,15 +1,15 @@
-package com.example.practice.blockingqueue;
+package com.example.practice.blockingqueue.delayed;
 
 import java.util.concurrent.BlockingQueue;
 
 /**
  * Created by rajeshkumar on 30/04/17.
  */
-public class Consumer implements Runnable {
+public class DelayedConsumer implements Runnable {
 
     private BlockingQueue<Message> queue;
 
-    public Consumer(final BlockingQueue<Message> queue) {
+    public DelayedConsumer(final BlockingQueue<Message> queue) {
         this.queue = queue;
     }
 
@@ -19,7 +19,7 @@ public class Consumer implements Runnable {
         try {
             Message message;
             while ((message = queue.take()).getMessage() != "Completed") {
-                Thread.sleep(counter++ * 100);
+                Thread.sleep(counter++ * 1000);
                 System.out.println("Consumed: " + message);
             }
         } catch (InterruptedException e) {

@@ -1,8 +1,4 @@
-package com.example.practice.DelayedQueueExample;
-
-import com.example.practice.blockingqueue.Consumer;
-import com.example.practice.blockingqueue.Message;
-import com.example.practice.blockingqueue.Producer;
+package com.example.practice.blockingqueue.array;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
@@ -10,7 +6,7 @@ import java.util.concurrent.BlockingQueue;
 /**
  * Created by rajeshkumar on 30/04/17.
  */
-public class DelayedBlockingQueueExample {
+public class ArrayBlockingQueueExample {
 
     public static void main(String[] args) {
         BlockingQueue<Message> queue = new ArrayBlockingQueue<>(10);

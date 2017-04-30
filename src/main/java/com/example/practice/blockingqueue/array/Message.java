@@ -1,4 +1,4 @@
-package com.example.practice.blockingqueue;
+package com.example.practice.blockingqueue.array;
 
 /**
  * Created by rajeshkumar on 30/04/17.
