@@ -7,55 +7,31 @@ import java.util.concurrent.CountDownLatch;
  */
 public class CountDownLatchExample {
 
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         CountDownLatch countDownLatch = new CountDownLatch(2);
 
-        final Thread worker = new Thread(new Worker(countDownLatch), "Worker");
-        worker.start();
-        final Thread countDowner = new Thread(new CountDowner(countDownLatch), "Count Downer");
-        countDowner.start();
+        new Thread(() -> {
+            System.out.println("Worker is awaiting at the latch");
+            try {
+                countDownLatch.await();
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            System.out.println("Latch is down, start working!");
+        }).start();
 
-        worker.join();
-        countDowner.join();
-    }
-}
-
-class Worker implements Runnable {
-    CountDownLatch countDownLatch;
-
-    public Worker(final CountDownLatch countDownLatch) {
-        this.countDownLatch = countDownLatch;
-    }
-
-    @Override
-    public void run() {
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("Latch is open now");
-    }
-}
-
-class CountDowner implements Runnable {
-    CountDownLatch countDownLatch;
-
-    public CountDowner(final CountDownLatch countDownLatch) {
-        this.countDownLatch = countDownLatch;
-    }
-
-    @Override
-    public void run() {
-        try {
-            Thread.sleep(1000);
-            countDownLatch.countDown();
-            System.out.println("Count Down dropped, Current value: " + countDownLatch.getCount());
-            Thread.sleep(1000);
-            countDownLatch.countDown();
-            System.out.println("Count Down dropped, Current value: " + countDownLatch.getCount());
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        new Thread(() -> {
+            try {
+                Thread.sleep(1000);
+                countDownLatch.countDown();
+                System.out.println("Count Down dropped, Current value: " + countDownLatch.getCount());
+                Thread.sleep(1000);
+                countDownLatch.countDown();
+                System.out.println("Count Down dropped, Current value: " + countDownLatch.getCount());
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
     }
 }
