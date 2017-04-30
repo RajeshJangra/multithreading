@@ -25,7 +25,7 @@ public class CyclicBarrierExample {
         }).start();
         new Thread(() -> {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(5000);
                 System.out.println("Thread two is awaiting at barrier");
                 cyclicBarrier.await();
             } catch (InterruptedException | BrokenBarrierException e) {
