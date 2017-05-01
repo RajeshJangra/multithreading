@@ -1,4 +1,4 @@
-package com.example.practice.forkjoin;
+package com.example.practice.forkjoin.recursiveaction;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,8 +42,9 @@ class RecursiveActionImpl extends RecursiveAction {
     @Override
     protected void compute() {
         if (workList.size() > 1) {
-            new RecursiveActionImpl(workList.subList(0, workList.size() / 2)).fork();
-            new RecursiveActionImpl(workList.subList((workList.size() / 2), workList.size())).fork();
+            final int half = workList.size() / 2;
+            new RecursiveActionImpl(workList.subList(0, half)).fork();
+            new RecursiveActionImpl(workList.subList(half, workList.size())).fork();
         } else {
             System.out.println("workList: " + workList.get(0));
         }
