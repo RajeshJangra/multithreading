@@ -26,9 +26,7 @@ public class SemaphoreExample {
             System.out.println("Available Permits: " + semaphore.availablePermits());
             boolean tryAcquire = semaphore.tryAcquire(1);
             System.out.println("tried acquiring " + (tryAcquire ? "Successfully" : "Unsuccessfully"));
-            if(semaphore.hasQueuedThreads()){
-                System.out.println("Queued Threads");
-            }
+            System.out.println(semaphore.availablePermits());
             try {
                 Thread.sleep(5000);
             } catch (InterruptedException e) {
